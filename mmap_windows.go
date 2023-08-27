@@ -12,10 +12,10 @@ package maxminddb
 import (
 	"errors"
 	"os"
-	"reflect"
 	"sync"
 	"unsafe"
 
+	"github.com/3JoB/go-reflect"
 	"golang.org/x/sys/windows"
 )
 

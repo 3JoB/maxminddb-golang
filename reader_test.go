@@ -418,7 +418,8 @@ type TestPointerType struct {
 	Uint32  *uint32     `maxminddb:"uint32"`
 
 	// Test for pointer to pointer
-	Uint64     **uint64 `maxminddb:"uint64"`
+	Uint64 **uint64 `maxminddb:"uint64"`
+
 	Uint128    *big.Int `maxminddb:"uint128"`
 	Utf8String *string  `maxminddb:"utf8_string"`
 }

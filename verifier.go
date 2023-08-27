@@ -1,8 +1,9 @@
 package maxminddb
 
 import (
-	"reflect"
 	"runtime"
+
+	"github.com/3JoB/go-reflect"
 )
 
 type verifier struct {
@@ -13,7 +14,7 @@ type verifier struct {
 // the data section, and the metadata section. This verifier is stricter than
 // the specification and may return errors on databases that are readable.
 func (r *Reader) Verify() error {
-	v := verifier{r}
+	v := verifier{reader: r}
 	if err := v.verifyMetadata(); err != nil {
 		return err
 	}

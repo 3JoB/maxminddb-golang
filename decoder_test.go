@@ -4,10 +4,10 @@ import (
 	"encoding/hex"
 	"math/big"
 	"os"
-	"reflect"
 	"strings"
 	"testing"
 
+	"github.com/3JoB/go-reflect"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -208,7 +208,7 @@ func validateDecoding(t *testing.T, tests map[string]any) {
 	for inputStr, expected := range tests {
 		inputBytes, err := hex.DecodeString(inputStr)
 		require.NoError(t, err)
-		d := decoder{inputBytes}
+		d := decoder{buffer: inputBytes}
 
 		var result any
 		_, err = d.decode(0, reflect.ValueOf(&result), 0)
@@ -224,7 +224,7 @@ func validateDecoding(t *testing.T, tests map[string]any) {
 func TestPointers(t *testing.T) {
 	bytes, err := os.ReadFile(testFile("maps-with-pointers.raw"))
 	require.NoError(t, err)
-	d := decoder{bytes}
+	d := decoder{buffer: bytes}
 
 	expected := map[uint]map[string]string{
 		0:  {"long_key": "long_value1"},

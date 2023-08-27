@@ -4,8 +4,9 @@ import (
 	"encoding/binary"
 	"math"
 	"math/big"
-	"reflect"
 	"sync"
+
+	"github.com/3JoB/go-reflect"
 )
 
 type decoder struct {
@@ -27,6 +28,7 @@ const (
 	_Uint64
 	_Uint128
 	_Slice
+
 	// We don't use the next two. They are placeholders. See the spec
 	// for more details.
 	_Container //nolint: deadcode, varcheck // above
@@ -810,7 +812,7 @@ func cachedFields(result reflect.Value) *fieldsType {
 		}
 		namedFields[fieldName] = i
 	}
-	fields := &fieldsType{namedFields, anonymous}
+	fields := &fieldsType{namedFields: namedFields, anonymousFields: anonymous}
 	fieldsMap.Store(resultType, fields)
 
 	return fields

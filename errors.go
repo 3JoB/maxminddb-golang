@@ -2,7 +2,8 @@ package maxminddb
 
 import (
 	"fmt"
-	"reflect"
+
+	"github.com/3JoB/go-reflect"
 )
 
 // InvalidDatabaseError is returned when the database contains invalid data
@@ -12,11 +13,11 @@ type InvalidDatabaseError struct {
 }
 
 func newOffsetError() InvalidDatabaseError {
-	return InvalidDatabaseError{"unexpected end of database"}
+	return InvalidDatabaseError{message: "unexpected end of database"}
 }
 
 func newInvalidDatabaseError(format string, args ...any) InvalidDatabaseError {
-	return InvalidDatabaseError{fmt.Sprintf(format, args...)}
+	return InvalidDatabaseError{message: fmt.Sprintf(format, args...)}
 }
 
 func (e InvalidDatabaseError) Error() string {

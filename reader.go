@@ -6,7 +6,8 @@ import (
 	"errors"
 	"fmt"
 	"net"
-	"reflect"
+
+	"github.com/3JoB/go-reflect"
 )
 
 const (
@@ -61,7 +62,7 @@ func FromBytes(buffer []byte) (*Reader, error) {
 	}
 
 	metadataStart += len(metadataStartMarker)
-	metadataDecoder := decoder{buffer[metadataStart:]}
+	metadataDecoder := decoder{buffer: buffer[metadataStart:]}
 
 	var metadata Metadata
 
@@ -78,7 +79,7 @@ func FromBytes(buffer []byte) (*Reader, error) {
 		return nil, newInvalidDatabaseError("the MaxMind DB contains invalid metadata")
 	}
 	d := decoder{
-		buffer[searchTreeSize+dataSectionSeparatorSize : metadataStart-len(metadataStartMarker)],
+		buffer: buffer[searchTreeSize+dataSectionSeparatorSize : metadataStart-len(metadataStartMarker)],
 	}
 
 	nodeBuffer := buffer[:searchTreeSize]

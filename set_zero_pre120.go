@@ -3,7 +3,7 @@
 
 package maxminddb
 
-import "reflect"
+import "github.com/3JoB/go-reflect"
 
 func reflectSetZero(v reflect.Value) {
 	v.Set(reflect.Zero(v.Type()))
