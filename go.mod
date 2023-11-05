@@ -1,11 +1,11 @@
 module github.com/3JoB/maxminddb-golang
 
-go 1.21.0
+go 1.21.3
 
 require (
 	github.com/3JoB/go-reflect v1.0.2
 	github.com/stretchr/testify v1.8.4
-	golang.org/x/sys v0.11.0
+	golang.org/x/sys v0.14.0
 )
 
 require (
